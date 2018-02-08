@@ -1,0 +1,33 @@
+<div class="container p-5">
+  <input type="text" class="form-control mb-3" name="Title" [(ngModel)]="Title" placeholder="Title...">
+  
+  <textarea name="Content" id="" cols="30" rows="10" class="form-control mb-3" [(ngModel)]="Content"></textarea>
+  
+  <button type="submit" class="btn btn-primary" value="add a post" (click)="addPost()">Add</button>
+
+  <hr>
+  <div class="row">
+    <div class="col-4" *ngFor="let post of blogPosts | async">
+      <div class="card">
+        <div class="card-body p-2">
+          <div (click)="getPost(post.id)">
+            <h5>
+              <strong>{{ post.data.Title }} (<a href="#" (click)="deletePost(post.id)">delete</a>)</strong>
+            </h5>
+            <p>{{ post.data.Content }}</p>
+          </div>
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+
+
+  <hr>
+  <h1>A specific Post:</h1>
+  <h3>{{ (post | async)?.Title }}</h3>
+  <h3>{{ (post | async)?.Content }}</h3>
+ 
+  
+</div>
